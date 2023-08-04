@@ -4,6 +4,7 @@ import {
   PublicClientApplication,
 } from '@azure/msal-browser';
 import { environment } from '../environments/environment';
+import { UsuarioService } from './services/usuario.service';
 
 @Component({
   selector: 'app-root',
@@ -13,29 +14,10 @@ import { environment } from '../environments/environment';
 export class AppComponent {
   title = 'azure-taskboard';
   //TODO - Passar para uma service
-  userAuth?: AuthenticationResult;
-  private publicClientApplication: PublicClientApplication =
-    new PublicClientApplication({
-      auth: {
-        clientId: environment.auth.clientId,
-        redirectUri: environment.auth.redirectUri,
-        authority: environment.auth.authority,
-      },
-      cache: {
-        cacheLocation: 'sessionStorage',
-        storeAuthStateInCookie: true,
-      },
-    });
+  constructor(private usuarioService: UsuarioService){}
 
-  async ngOnInit() {
-    let t = this.publicClientApplication.getAllAccounts();
-    
-
-    !t.length ?
-    this.userAuth = await this.publicClientApplication.loginPopup({
-      scopes: environment.auth.scopes,
-      prompt: 'select_account',
-    }):console.log('t', t);
-    
+  ngOnInit() {
+    const user = this.usuarioService.login();
+    console.log('user', user);
   }
 }
