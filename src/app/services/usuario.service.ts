@@ -29,7 +29,6 @@ export class UsuarioService {
   }
 
   public async login(): Promise<AccountInfo> {
-  
     await this.publicClientApplication
       .loginPopup({
         scopes: environment.auth.scopes,
@@ -37,9 +36,10 @@ export class UsuarioService {
       })
       .then((result: AuthenticationResult) => {
         this.userAuthenticated = result.account!;
-      }).catch(error => {
-        console.log(error)
-        alert("Usuário não autenticado corretamente.")
+      })
+      .catch((error) => {
+        console.log(error);
+        alert('Usuário não autenticado corretamente.');
       });
 
     if (!this.userAuthenticated) {
@@ -51,4 +51,31 @@ export class UsuarioService {
 
   public logout = (): Promise<void> =>
     this.publicClientApplication.logoutPopup();
+
+  public async getBearerToken(): Promise<string> {
+    try {
+      // Verifica se o usuário está autenticado
+      if (!this.userAuthenticated) 
+        throw new Error('Usuário não autenticado.');
+            
+      // Obtenha o token de acesso usando acquireTokenSilent
+      const response = await this.publicClientApplication.acquireTokenSilent(
+        {
+          // Defina os escopos para obter o token
+          scopes: environment.auth.scopes,
+          account: this.userAuthenticated,
+        }
+      );
+
+      // Verifica se a resposta contém o token de acesso
+      if (response.accessToken) {
+        return response.accessToken;
+      } else {
+        throw new Error('Não foi possível obter o token de acesso.');
+      }
+    } catch (error) {
+      console.error('Erro ao obter o token de acesso:', error);
+      throw error;
+    }
+  }
 }

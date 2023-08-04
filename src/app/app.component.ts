@@ -16,8 +16,9 @@ export class AppComponent {
   //TODO - Passar para uma service
   constructor(private usuarioService: UsuarioService){}
 
-  ngOnInit() {
-    const user = this.usuarioService.login();
+  async ngOnInit() {
+    const user = await this.usuarioService.login();
     console.log('user', user);
+    console.log("token", this.usuarioService.getBearerToken())
   }
 }
