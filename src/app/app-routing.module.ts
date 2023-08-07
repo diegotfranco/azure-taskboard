@@ -5,7 +5,6 @@ import { ComentariosComponent } from './pages/comentarios/comentarios.component'
 import { HomeComponent } from './pages/home/home.component';
 import { MencoesComponent } from './pages/mencoes/mencoes.component';
 import { UsuarioAutenticadoGuard } from './services/guards/usuario-autenticado.guard';
-import { UsuarioNaoAutenticadoGuard } from './services/guards/usuario-nao-autenticado.guard';
 import StringResources from './commons/string-resources';
 
 const routes: Routes = [
