@@ -22,9 +22,9 @@ export class TokenInterceptor implements HttpInterceptor {
         }
       });
       return next.handle(request).pipe(catchError(err => {
-      if (err instanceof HttpErrorResponse && err?.status === 401){
-        this.usuarioService.logout();
-      }
+        if (err instanceof HttpErrorResponse && err?.status === 401){
+          this.usuarioService.logout();
+        }
         return throwError(() => new Error(err?.message || 'Unknown error occurred'));
       }));
     }
