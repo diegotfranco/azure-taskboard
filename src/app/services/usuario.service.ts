@@ -4,18 +4,16 @@ import { PublicClientApplication } from '@azure/msal-browser/dist/app/PublicClie
 import { Location } from '@angular/common';
 import { environment } from 'src/environments/environment';
 import { UsuarioLogado } from '../types/UsuarioLogado';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
-
 export class UsuarioService {
   private publicClientApplication: PublicClientApplication =
     {} as PublicClientApplication;
   public userAuthenticated?: AccountInfo = {} as AccountInfo;
-  constructor(
-    private location: Location
-  ) {
+  constructor(private location: Location, private router: Router) {
     this.publicClientApplication = new PublicClientApplication({
       auth: {
         clientId: environment.auth.clientId,
@@ -59,8 +57,10 @@ export class UsuarioService {
     return usuariologado;
   }
 
-  public logout = (): Promise<void> =>
-    this.publicClientApplication.logoutPopup();
+  public logout(): Promise<void> {
+    this.router.navigate(['login']);
+    return this.publicClientApplication.logoutPopup();
+  }
 
   public async getBearerToken(): Promise<string> {
     try {
