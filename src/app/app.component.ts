@@ -21,6 +21,5 @@ export class AppComponent {
     const user = await this.usuarioService.login();
     console.log('user', user);
     console.log("token", this.usuarioService.getBearerToken())
-    // console.log(await this.http.get('/api/lalala').subscribe());
   }
 }
