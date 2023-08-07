@@ -13,21 +13,14 @@ const routes: Routes = [
   {
     path: StringResources.ROUTE_HOME,
     component: HomeComponent,
-    canActivate: [UsuarioAutenticadoGuard],
   },
   {
     path: StringResources.ROUTE_LOGIN,
     component: RedirecionamentoLoginComponent,
-    canActivate: [UsuarioAutenticadoGuard],
   },
   {
     path: StringResources.ROUTE_PAGINA_NAO_ENCONTRADA,
     component: PaginaNaoEncontradaComponent,
-    canActivate: [UsuarioAutenticadoGuard],
-  },
-  {
-    path: StringResources.ROUTE_HOME,
-    component: HomeComponent,
     canActivate: [UsuarioAutenticadoGuard],
   },
   {
