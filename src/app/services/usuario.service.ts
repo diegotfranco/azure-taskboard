@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AccountInfo, AuthenticationResult } from '@azure/msal-browser';
 import { PublicClientApplication } from '@azure/msal-browser/dist/app/PublicClientApplication';
+import { Location } from '@angular/common';
 import { environment } from 'src/environments/environment';
 import { UsuarioLogado } from '../types/UsuarioLogado';
 
@@ -12,7 +13,9 @@ export class UsuarioService {
   private publicClientApplication: PublicClientApplication =
     {} as PublicClientApplication;
   public userAuthenticated?: AccountInfo = {} as AccountInfo;
-  constructor() {
+  constructor(
+    private location: Location
+  ) {
     this.publicClientApplication = new PublicClientApplication({
       auth: {
         clientId: environment.auth.clientId,
@@ -37,6 +40,7 @@ export class UsuarioService {
       })
       .then((result: AuthenticationResult) => {
         this.userAuthenticated = result.account!;
+        this.location.back();
       })
       .catch((error) => {
         console.log(error);

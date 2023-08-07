@@ -5,24 +5,27 @@ import { ComentariosComponent } from './pages/comentarios/comentarios.component'
 import { HomeComponent } from './pages/home/home.component';
 import { MencoesComponent } from './pages/mencoes/mencoes.component';
 import { UsuarioAutenticadoGuard } from './services/guards/usuario-autenticado.guard';
+import { UsuarioNaoAutenticadoGuard } from './services/guards/usuario-nao-autenticado.guard';
+import StringResources from './commons/string-resources';
 
 const routes: Routes = [
   { 
-    path: '', 
+    path: StringResources.ROUTE_HOME, 
     component: HomeComponent, 
     canActivate: [UsuarioAutenticadoGuard]
   },
-  { path: 'atividades', 
+  { 
+    path: StringResources.ROUTE_ATIVIDADES, 
     component: AtividadesComponent, 
     canActivate: [UsuarioAutenticadoGuard] 
   },
   { 
-    path: 'comentarios', 
+    path: StringResources.ROUTE_COMENTARIOS, 
     component: ComentariosComponent, 
     canActivate: [UsuarioAutenticadoGuard] 
   },
   { 
-    path: 'mencoes', 
+    path: StringResources.ROUTE_MENCOES, 
     component: MencoesComponent, 
     canActivate: [UsuarioAutenticadoGuard] 
   }
