@@ -13,6 +13,7 @@ const routes: Routes = [
   {
     path: StringResources.ROUTE_HOME,
     component: HomeComponent,
+    canActivate: [UsuarioAutenticadoGuard],
   },
   {
     path: StringResources.ROUTE_LOGIN,

@@ -1,5 +1,5 @@
 export const environment = {
-  production: false,
+  production: true,
   auth: {
     clientId: '4aac7ebd-25d3-4066-b6ca-7c8defd75099',
     redirectUri: 'http://localhost:4200/',
