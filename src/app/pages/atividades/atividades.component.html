@@ -1,12 +1,13 @@
 <div class="p-4 sm:ml-64">
-  <p>
-    atividades works!
-  </p>
-  <ag-grid-angular
-    style="width: 100%; height: 350px;"
-    class="ag-theme-alpine"
-    [rowData]="rowData"
-    [columnDefs]="columnDefs">
-</ag-grid-angular>
+  <p>atividades works!</p>
+  <div id="grid-wrapper" style="width: 100%; height: 100%">
+    <ag-grid-angular
+      style="width: 100%; height: 350px"
+      class="ag-theme-alpine"
+      [rowData]="rowData"
+      [columnDefs]="columnDefs"
+      (gridSizeChanged)="onGridSizeChanged($event)"
+    >
+    </ag-grid-angular>
+  </div>
 </div>
-
