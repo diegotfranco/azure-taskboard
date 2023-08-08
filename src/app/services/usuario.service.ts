@@ -16,9 +16,9 @@ export class UsuarioService {
   constructor(private location: Location, private router: Router) {
     this.publicClientApplication = new PublicClientApplication({
       auth: {
-        clientId: environment.clientId,
-        redirectUri: environment.redirectUri,
-        authority: environment.authority,
+        clientId: environment.auth.clientId,
+        redirectUri: environment.auth.redirectUri,
+        authority: environment.auth.authority,
       },
       cache: {
         cacheLocation: 'sessionStorage',
@@ -33,7 +33,7 @@ export class UsuarioService {
 
     await this.publicClientApplication
       .loginPopup({
-        scopes: environment.scopes,
+        scopes: environment.auth.scopes,
         prompt: 'select_account',
       })
       .then((result: AuthenticationResult) => {
@@ -68,7 +68,7 @@ export class UsuarioService {
       if (!this.userAuthenticated) throw new Error('Usuário não autenticado.');
 
       const response = await this.publicClientApplication.acquireTokenSilent({
-        scopes: environment.scopes,
+        scopes: environment.auth.scopes,
         account: this.userAuthenticated,
       });
 
