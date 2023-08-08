@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { AccountInfo, AuthenticationResult } from '@azure/msal-browser';
 import { PublicClientApplication } from '@azure/msal-browser/dist/app/PublicClientApplication';
 import { Location } from '@angular/common';
-import { environment } from 'src/environments/environment';
-import { UsuarioLogado } from '../types/UsuarioLogado';
 import { Router } from '@angular/router';
+import { UsuarioLogado } from '../types/UsuarioLogado';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -16,9 +16,9 @@ export class UsuarioService {
   constructor(private location: Location, private router: Router) {
     this.publicClientApplication = new PublicClientApplication({
       auth: {
-        clientId: environment.auth.clientId,
-        redirectUri: environment.auth.redirectUri,
-        authority: environment.auth.authority,
+        clientId: process.env['clientId'] as string,
+        redirectUri: process.env['redirectUri'],
+        authority: process.env['authority'],
       },
       cache: {
         cacheLocation: 'sessionStorage',
@@ -28,12 +28,15 @@ export class UsuarioService {
   }
 
   public async login(): Promise<UsuarioLogado> {
+    const scopesString = process.env['scopes'];
+    const scopes = scopesString ? scopesString.split(',') : [];
+
     const usuarioLogado = this.obterUsuarioLogado();
     if (usuarioLogado) return usuarioLogado;
 
     await this.publicClientApplication
       .loginPopup({
-        scopes: environment.auth.scopes,
+        scopes: scopes,
         prompt: 'select_account',
       })
       .then((result: AuthenticationResult) => {
@@ -64,11 +67,14 @@ export class UsuarioService {
   }
 
   public async getBearerToken(): Promise<string> {
+    const scopesString = process.env['scopes'];
+    const scopes = scopesString ? scopesString.split(',') : [];
+
     try {
       if (!this.userAuthenticated) throw new Error('Usuário não autenticado.');
 
       const response = await this.publicClientApplication.acquireTokenSilent({
-        scopes: environment.auth.scopes,
+        scopes: scopes,
         account: this.userAuthenticated,
       });
 
