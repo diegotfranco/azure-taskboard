@@ -57,9 +57,10 @@ export class UsuarioService {
     return usuariologado;
   }
 
-  public logout(): Promise<void> {
-    this.router.navigate(['login']);
-    return this.publicClientApplication.logoutPopup();
+  public async logout() {
+    await this.publicClientApplication
+      .logoutPopup()
+      .then(() => this.router.navigate(['login']));
   }
 
   public async getBearerToken(): Promise<string> {

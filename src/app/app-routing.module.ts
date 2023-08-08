@@ -11,17 +11,12 @@ import StringResources from './commons/string-resources';
 
 const routes: Routes = [
   {
-    path: StringResources.ROUTE_HOME,
-    component: HomeComponent,
-    canActivate: [UsuarioAutenticadoGuard],
-  },
-  {
     path: StringResources.ROUTE_LOGIN,
     component: RedirecionamentoLoginComponent,
   },
   {
-    path: StringResources.ROUTE_PAGINA_NAO_ENCONTRADA,
-    component: PaginaNaoEncontradaComponent,
+    path: StringResources.ROUTE_HOME,
+    component: HomeComponent,
     canActivate: [UsuarioAutenticadoGuard],
   },
   {
@@ -37,6 +32,11 @@ const routes: Routes = [
   {
     path: StringResources.ROUTE_MENCOES,
     component: MencoesComponent,
+    canActivate: [UsuarioAutenticadoGuard],
+  },
+  {
+    path: StringResources.ROUTE_PAGINA_NAO_ENCONTRADA,
+    component: PaginaNaoEncontradaComponent,
     canActivate: [UsuarioAutenticadoGuard],
   },
 ];

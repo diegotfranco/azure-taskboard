@@ -12,7 +12,6 @@ export class SidebarMenuComponent implements OnInit {
   ngOnInit() {}
 
   async deslogar(): Promise<any> {
-    console.log('deslogou');
     await this.usuarioService.logout();
   }
 }
