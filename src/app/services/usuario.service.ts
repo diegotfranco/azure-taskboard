@@ -28,12 +28,15 @@ export class UsuarioService {
   }
 
   public async login(): Promise<UsuarioLogado> {
+    const scopesString = process.env['scopes'];
+    const scopes = scopesString ? scopesString.split(',') : [];
+
     const usuarioLogado = this.obterUsuarioLogado();
     if (usuarioLogado) return usuarioLogado;
 
     await this.publicClientApplication
       .loginPopup({
-        scopes: environment.scopes,
+        scopes: scopes,
         prompt: 'select_account',
       })
       .then((result: AuthenticationResult) => {
@@ -64,11 +67,14 @@ export class UsuarioService {
   }
 
   public async getBearerToken(): Promise<string> {
+    const scopesString = process.env['scopes'];
+    const scopes = scopesString ? scopesString.split(',') : [];
+
     try {
       if (!this.userAuthenticated) throw new Error('Usuário não autenticado.');
 
       const response = await this.publicClientApplication.acquireTokenSilent({
-        scopes: environment.scopes,
+        scopes: scopes,
         account: this.userAuthenticated,
       });
 
