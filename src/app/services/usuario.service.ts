@@ -16,9 +16,9 @@ export class UsuarioService {
   constructor(private location: Location, private router: Router) {
     this.publicClientApplication = new PublicClientApplication({
       auth: {
-        clientId: process.env.clientId,
-        redirectUri: process.env.redirectUri,
-        authority: process.env.authority,
+        clientId: process.env['clientId'] as string,
+        redirectUri: process.env['redirectUri'],
+        authority: process.env['authority'],
       },
       cache: {
         cacheLocation: 'sessionStorage',
