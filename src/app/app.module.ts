@@ -10,6 +10,9 @@ import { AtividadesComponent } from './pages/atividades/atividades.component';
 import { ComentariosComponent } from './pages/comentarios/comentarios.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MencoesComponent } from './pages/mencoes/mencoes.component';
+import { RedirecionamentoLoginComponent } from './pages/redirecionamento-login/redirecionamento-login.component';
+import { PaginaNaoEncontradaComponent } from './pages/pagina-nao-encontrada/pagina-nao-encontrada.component';
+import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
   declarations: [
@@ -18,16 +21,20 @@ import { MencoesComponent } from './pages/mencoes/mencoes.component';
     HomeComponent,
     AtividadesComponent,
     ComentariosComponent,
-    MencoesComponent
+    MencoesComponent,
+    RedirecionamentoLoginComponent,
+    PaginaNaoEncontradaComponent,
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
+    AgGridModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

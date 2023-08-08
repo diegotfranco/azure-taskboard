@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { UsuarioService } from './services/usuario.service';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +7,7 @@ import { UsuarioService } from './services/usuario.service';
 })
 export class AppComponent {
   title = 'azure-taskboard';
-  constructor(private usuarioService: UsuarioService){}
+  constructor() {}
 
-  async ngOnInit() {
-    await this.usuarioService.login();
-  }
+  ngOnInit() {}
 }
