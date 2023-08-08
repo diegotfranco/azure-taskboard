@@ -12,6 +12,11 @@ export class AppComponent {
 
   ngOnInit() {
     console.log(
+      'production',
+      typeof environment.production,
+      environment.production
+    );
+    console.log(
       'auth',
       typeof environment.auth.clientId,
       environment.auth.clientId
