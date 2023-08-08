@@ -19,10 +19,10 @@
     "@angular/platform-browser": "^14.2.0",
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
-    "ag-grid-angular": "^30.0.6",
-    "ag-grid-community": "30.0.6",
     "@azure/msal-angular": "2",
     "@azure/msal-browser": "^2.38.0",
+    "ag-grid-angular": "^30.0.6",
+    "ag-grid-community": "30.0.6",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

@@ -7,7 +7,7 @@ import { MencoesComponent } from './pages/mencoes/mencoes.component';
 import { RedirecionamentoLoginComponent } from './pages/redirecionamento-login/redirecionamento-login.component';
 import { PaginaNaoEncontradaComponent } from './pages/pagina-nao-encontrada/pagina-nao-encontrada.component';
 import { UsuarioAutenticadoGuard } from './services/guards/usuario-autenticado.guard';
-import StringResources from './commons/string-resources';
+import StringResources from './commons/resources/string-resources';
 
 const routes: Routes = [
   {

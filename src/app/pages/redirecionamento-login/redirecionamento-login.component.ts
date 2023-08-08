@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UsuarioService } from '../../services/usuario.service';
+import { UsuarioService } from '../../services/user-service/usuario.service';
 @Component({
   selector: 'app-redirecionamento-login',
   templateUrl: './redirecionamento-login.component.html',

@@ -3,7 +3,7 @@ import { AccountInfo, AuthenticationResult } from '@azure/msal-browser';
 import { PublicClientApplication } from '@azure/msal-browser/dist/app/PublicClientApplication';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
-import { UsuarioLogado } from '../types/UsuarioLogado';
+import { UsuarioLogado } from '../../types/UsuarioLogado';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
