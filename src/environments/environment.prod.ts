@@ -1,7 +1,10 @@
 export const environment = {
   production: false,
-  clientId: ' ',
-  redirectUri: '',
-  authority: '',
-  scopes: [],
+  auth: {
+    endpoint: '',
+    clientId: '',
+    redirectUri: '',
+    authority: '',
+    scopes: ['user.read', 'tasks.read'],
+  },
 };
