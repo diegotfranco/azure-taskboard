@@ -18,23 +18,23 @@ export class AppComponent {
     );
     console.log(
       'auth',
-      typeof environment.clientId,
-      environment.clientId
+      typeof environment.auth.clientId,
+      environment.auth.clientId
     );
     console.log(
       'auth',
-      typeof environment.redirectUri,
-      environment.redirectUri
+      typeof environment.auth.redirectUri,
+      environment.auth.redirectUri
     );
     console.log(
       'auth',
-      typeof environment.authority,
-      environment.authority
+      typeof environment.auth.authority,
+      environment.auth.authority
     );
     console.log(
       'auth',
-      typeof environment.scopes,
-      environment.scopes
+      typeof environment.auth.scopes,
+      environment.auth.scopes
     );
   }
 }
