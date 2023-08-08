@@ -16,9 +16,9 @@ export class UsuarioService {
   constructor(private location: Location, private router: Router) {
     this.publicClientApplication = new PublicClientApplication({
       auth: {
-        clientId: process.env['clientId'] as string,
-        redirectUri: process.env['redirectUri'],
-        authority: process.env['authority'],
+        clientId: environment.clientId,
+        redirectUri: environment.redirectUri,
+        authority: environment.authority,
       },
       cache: {
         cacheLocation: 'sessionStorage',
@@ -28,15 +28,12 @@ export class UsuarioService {
   }
 
   public async login(): Promise<UsuarioLogado> {
-    const scopesString = process.env['scopes'];
-    const scopes = scopesString ? scopesString.split(',') : [];
-
     const usuarioLogado = this.obterUsuarioLogado();
     if (usuarioLogado) return usuarioLogado;
 
     await this.publicClientApplication
       .loginPopup({
-        scopes: scopes,
+        scopes: environment.scopes,
         prompt: 'select_account',
       })
       .then((result: AuthenticationResult) => {
@@ -67,14 +64,11 @@ export class UsuarioService {
   }
 
   public async getBearerToken(): Promise<string> {
-    const scopesString = process.env['scopes'];
-    const scopes = scopesString ? scopesString.split(',') : [];
-
     try {
       if (!this.userAuthenticated) throw new Error('Usuário não autenticado.');
 
       const response = await this.publicClientApplication.acquireTokenSilent({
-        scopes: scopes,
+        scopes: environment.scopes,
         account: this.userAuthenticated,
       });
 
