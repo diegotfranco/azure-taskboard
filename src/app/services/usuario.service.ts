@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { AccountInfo, AuthenticationResult } from '@azure/msal-browser';
 import { PublicClientApplication } from '@azure/msal-browser/dist/app/PublicClientApplication';
 import { Location } from '@angular/common';
-import { environment } from 'src/environments/environment';
-import { UsuarioLogado } from '../types/UsuarioLogado';
 import { Router } from '@angular/router';
+import { UsuarioLogado } from '../types/UsuarioLogado';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -16,9 +16,9 @@ export class UsuarioService {
   constructor(private location: Location, private router: Router) {
     this.publicClientApplication = new PublicClientApplication({
       auth: {
-        clientId: environment.clientId,
-        redirectUri: environment.redirectUri,
-        authority: environment.authority,
+        clientId: process.env.clientId,
+        redirectUri: process.env.redirectUri,
+        authority: process.env.authority,
       },
       cache: {
         cacheLocation: 'sessionStorage',
