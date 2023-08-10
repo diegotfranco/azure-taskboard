@@ -11,8 +11,9 @@ export class HomeComponent implements OnInit {
 
   user: any;
 
-  ngOnInit() {
+  async ngOnInit() {
     this.obterDadosDoUsuario();
+    await this.usuarioService.accessAzureDevOps();
   }
   obterDadosDoUsuario() {
     this.user = this.usuarioService.obterUsuarioLogado();

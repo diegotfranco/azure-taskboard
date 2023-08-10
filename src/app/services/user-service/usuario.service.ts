@@ -5,6 +5,7 @@ import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { UsuarioLogado } from '../../types/UsuarioLogado';
 import { environment } from 'src/environments/environment';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,7 @@ export class UsuarioService {
   private publicClientApplication: PublicClientApplication =
     {} as PublicClientApplication;
   public userAuthenticated?: AccountInfo = {} as AccountInfo;
-  constructor(private location: Location, private router: Router) {
+  constructor(private location: Location, private router: Router, private http: HttpClient) {
     this.publicClientApplication = new PublicClientApplication({
       auth: {
         clientId: environment.auth.clientId,
@@ -95,4 +96,32 @@ export class UsuarioService {
     }
     return null;
   }
+
+  public async accessAzureDevOps() {
+  try {
+    let bearer = await this.getBearerToken();
+    let baseUrl = 'http://dev.azure.com/dr34mt34m/';
+    let projectsUrl = baseUrl + '_apis/projects';
+
+    const headers = new Headers({
+      'Authorization': `Bearer ${bearer}`,
+      'X-TFS-FedAuthRedirect': 'Suppress'
+    });
+
+    // Make the HTTP GET request using fetch
+    let response = await fetch(projectsUrl, {
+      method: 'GET',
+      headers: headers
+    });
+
+    if (response.ok) {
+      let data = await response.json();
+      console.log('Projects:', data);
+    } else {
+      console.error('Request failed with status:', response.status);
+    }
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
 }
