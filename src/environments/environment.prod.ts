@@ -6,6 +6,6 @@ export const environment = {
     redirectUri: 'https://azure-taskboard.vercel.app',
     authority:
       'https://login.microsoftonline.com/4b4804e7-608f-4dbc-9547-7ccc5d9b8600',
-    scopes: ['user.read', 'tasks.read'],
+    scopes: ['user.read', 'tasks.read', '499b84ac-1321-427f-aa17-267ca6975798/user_impersonation'],
   },
 };
