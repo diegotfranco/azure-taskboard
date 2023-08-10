@@ -100,7 +100,7 @@ export class UsuarioService {
   public async accessAzureDevOps() {
   try {
     let bearer = await this.getBearerToken();
-    let baseUrl = 'http://dev.azure.com/dr34mt34m/';
+    let baseUrl = 'https://dev.azure.com/dr34mt34m/';
     let projectsUrl = baseUrl + '_apis/projects';
 
     const headers = new Headers({
